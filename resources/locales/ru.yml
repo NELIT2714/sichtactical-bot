@@ -1,0 +1,9 @@
+messages:
+  start: "Приветствуем в клубе *SICH TACTICAL*! 👋\n\nВ приложении можно записаться на игру, посмотреть предстоящие события и получать уведомления о новых играх"
+
+buttons:
+  open_webapp: "Открыть приложение"
+  settings: "Настройки"
+  image_converter: "Конвертор изображений"
+  back: "Назад"
+  change_lang: "Change language"
