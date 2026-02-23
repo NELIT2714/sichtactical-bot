@@ -27,7 +27,7 @@ def build_keyboard() -> InlineKeyboardMarkup:
     ])
 
 
-async def start(bot: Bot, channel, lang: dict):
+async def start(bot: Bot, channel, locales: dict):
     queue = await channel.declare_queue(QUEUE, durable=True, passive=True)
 
     async with queue.iterator() as iterator:
@@ -35,10 +35,10 @@ async def start(bot: Bot, channel, lang: dict):
             async with message.process():
                 try:
                     payload = json.loads(message.body.decode())
-                    lang = lang.get("ru")
                     print(payload)
 
-                    user_ids = payload.get("user_ids", [])
+                    users = payload.get("users", [])
+
                     notification = payload.get("notification", {})
                     notification_data = notification.get("notification_data", {})
 
@@ -46,7 +46,10 @@ async def start(bot: Bot, channel, lang: dict):
                     text = build_message(data)
                     # keyboard = build_keyboard()
 
-                    for user_id in user_ids:
+                    for user in users:
+                        user_id = user.get("telegram_id")
+                        user_lang = locales.get(user.get("language_code", "ru"))
+
                         try:
                             await bot.send_message(
                                 chat_id=int(user_id),
@@ -55,7 +58,7 @@ async def start(bot: Bot, channel, lang: dict):
                                 reply_markup=InlineKeyboardMarkup(inline_keyboard=[
                                     [
                                         InlineKeyboardButton(
-                                            text=lang["buttons"]["open_webapp"],
+                                            text=user_lang["buttons"]["open_webapp"],
                                             web_app=WebAppInfo(url="https://sichtactical.vercel.app/")
                                         )
                                     ]
