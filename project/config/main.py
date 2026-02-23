@@ -15,4 +15,4 @@ def setup():
 
     dp.include_router(main_router)
 
-    return bot, dp
+    return bot, dp, locales
