@@ -14,11 +14,15 @@ def build_message(data: dict) -> str:
     description = data.get("description", "")
     content = data.get("content", "")
 
-    return (
-        f"🔔 *{title}*\n\n"
-        f"{description}\n\n"
-        f"{content}"
-    )
+    message = f"🔔 *{title}*"
+
+    if description:
+        message += f"\n\n{description}"
+
+    if content:
+        message += f"\n\n{content}"
+
+    return message
 
 
 def build_keyboard() -> InlineKeyboardMarkup:
