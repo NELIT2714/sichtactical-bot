@@ -63,7 +63,7 @@ async def start(bot: Bot, channel, locales: dict):
                                     [
                                         InlineKeyboardButton(
                                             text=user_lang["buttons"]["open_webapp"],
-                                            web_app=WebAppInfo(url="https://sichtactical.vercel.app/")
+                                            web_app=WebAppInfo(url="https://sichtactical.pl/")
                                         )
                                     ]
                                 ]),
