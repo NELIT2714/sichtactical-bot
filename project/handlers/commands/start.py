@@ -19,7 +19,7 @@ async def command_start(message: Message, lang: dict):
             [
                 InlineKeyboardButton(
                     text=lang["buttons"]["open_webapp"],
-                    web_app=WebAppInfo(url="https://sichtactical.vercel.app/")
+                    web_app=WebAppInfo(url="https://sichtactical.pl/")
                 )
             ]
         ]),
